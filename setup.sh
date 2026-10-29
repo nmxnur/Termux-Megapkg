@@ -2,7 +2,7 @@
 # Downloading the required dependencies to run a script without error
 #################################
 #    Project : T-Megapackage    #
-#       author : Ashish         #
+#     author : nmxnur           #
 #################################
 clear
 
