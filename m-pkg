@@ -1,0 +1,332 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+############################################
+#         Project : T-Megapackage          #
+#          author : nmxnur                 #
+#          EMAIL  : nmxsnur@gmail.com      #
+############################################
+
+clear
+echo 
+echo "
+          █▀▄▀█ █▀▀ █▀▀ ▄▀█ █▀█ ▄▀█ █▀▀ █▄▀ ▄▀█ █▀▀ █▀▀
+          █ ▀ █ ██▄ █▄█ █▀█ █▀▀ █▀█ █▄▄ █ █ █▀█ █▄█ ██▄
+V 1.0" | lolcat 2>/dev/null || echo "T-Megapackage V1.0"
+echo "                   >>> created by:-N M X N U R "
+echo "              >>> Keep Supporting:-nmxnur"
+echo " "
+
+# Helper logging functions
+log_info() { echo -e "\e[34m[*] $1\e[m"; }
+log_success() { echo -e "\e[32m[+] $1\e[m"; }
+log_error() { echo -e "\e[31m[-] $1\e[m"; }
+
+echo -e "\e[92m=======================================================================\e[m"
+echo -e "\e[32m[\e[33m01\e[32m]\e[96m zphisher \e[m                      \e[32m[\e[33m11\e[32m]\e[96m ubuntu-in-termux \e[m"                  
+echo -e "\e[32m[\e[33m02\e[32m]\e[96m HiddenEye \e[m                     \e[32m[\e[33m12\e[32m]\e[96m ghost \e[m"
+echo -e "\e[32m[\e[33m03\e[32m]\e[96m shark \e[m                         \e[32m[\e[33m13\e[32m]\e[96m TBomb \e[m"
+echo -e "\e[32m[\e[33m04\e[32m]\e[96m GodMode (Prompt Style) \e[m        \e[32m[\e[33m14\e[32m]\e[96m grabcam \e[m"
+echo -e "\e[32m[\e[33m05\e[32m]\e[96m T-Remix \e[m                       \e[32m[\e[33m15\e[32m]\e[96m Impulse \e[m"
+echo -e "\e[32m[\e[33m06\e[32m]\e[96m Wireshark (X11) \e[m               \e[32m[\e[33m16\e[32m]\e[96m lockphish \e[m"
+echo -e "\e[32m[\e[33m07\e[32m]\e[96m Termux-Keys \e[m                   \e[32m[\e[33m17\e[32m]\e[96m RED_HAWK \e[m"
+echo -e "\e[32m[\e[33m08\e[32m]\e[96m metasploit-framework \e[m          \e[32m[\e[33m18\e[32m]\e[96m termux-omz \e[m"
+echo -e "\e[32m[\e[33m09\e[32m]\e[96m kali-nethunter-termux \e[m         \e[32m[\e[33m19\e[32m]\e[96m Cupp \e[m"
+echo -e "\e[32m[\e[33m10\e[32m]\e[96m Optical-Framework \e[m             \e[32m[\e[33m20\e[32m]\e[96m FakeRoot \e[m"
+echo -e "\e[92m=======================================================================\e[m"
+echo " "
+read -p $'\e[34m[*]\e[33m Enter Your Choice : \e[0m' n
+echo
+
+case "$n" in
+    1|01)
+        DIR="$HOME/zphisher"
+        if [ -d "$DIR" ]; then
+            cd "$DIR" && bash zphisher.sh
+        else
+            log_info "Installing Zphisher"
+            pkg install curl php openssh git -y
+            cd "$HOME" || exit
+            git clone https://github.com/htr-tech/zphisher.git
+            cd zphisher && bash zphisher.sh
+        fi
+        ;;
+
+    2|02)
+        DIR="$HOME/HiddenEye"
+        if [ -d "$DIR" ]; then
+            cd "$DIR" && python HiddenEye.py
+        else
+            log_info "Installing HiddenEye"
+            pkg install git python php curl openssh -y
+            cd "$HOME" || exit
+            git clone https://github.com/DarkSecDevelopers/HiddenEye.git
+            cd HiddenEye || exit
+            pip install requests
+            python HiddenEye.py
+        fi
+        ;;
+
+    3|03)
+        DIR="$HOME/shark"
+        if [ -d "$DIR" ]; then
+            cd "$DIR" && ./setup
+        else
+            log_info "Installing shark"
+            pkg install git -y
+            cd "$HOME" || exit
+            git clone https://github.com/Bhaviktutorials/shark
+            cd shark || exit
+            chmod +x *
+            ./setup
+        fi
+        ;;
+
+    4|04)
+        log_info "Setting up GodMode Prompt"
+        if ! grep -q "GodMode" "$PREFIX/etc/bash.bashrc"; then
+            echo "PS1='\[\e[1;92m\]GodMode > \[\e[0;37m\]'" >> "$PREFIX/etc/bash.bashrc"
+            log_success "GodMode Prompt Enabled! Restart Termux to see changes."
+        else
+            echo -e "\e[33mGodMode prompt is already set in bash.bashrc\e[m"
+        fi
+        ;;
+
+    5|05)
+        DIR="$HOME/T-Remix"
+        if [ -d "$DIR" ]; then 
+            echo -e "\e[32mIt Already Exists!\e[m"
+        else
+            log_info "Installing T-Remix"
+            pkg install git -y
+            cd "$HOME" || exit
+            git clone https://github.com/Bhaviktutorials/T-Remix
+            cd T-Remix || exit
+            chmod +x *
+            bash t-remix.sh
+        fi
+        ;;
+
+    6|06)
+        log_info "Installing Wireshark (X11 environment)"
+        pkg update && pkg upgrade -y
+        pkg install x11-repo -y
+        pkg install wireshark-cli tigervnc xterm -y
+        log_success "Wireshark CLI installed. Run 'tshark' or set up VNC for GUI display."
+        ;;
+
+    7|07)
+        DIR="$HOME/Termux-Keys"
+        if [ -d "$DIR" ]; then
+            cd "$DIR" && bash termux-keys.sh
+        else
+            log_info "Installing Termux-Keys"
+            pkg install git -y
+            cd "$HOME" || exit
+            git clone https://github.com/Bhaviktutorials/Termux-Keys
+            cd Termux-Keys || exit
+            chmod +x *
+            bash termux-keys.sh
+        fi
+        ;;
+
+    8|08)
+        log_info "Installing metasploit-framework"
+        pkg install wget root-repo unstable-repo -y
+        pkg install metasploit -y
+        ;;
+
+    9|09)
+        NETHUNTER_URL="https://raw.githubusercontent.com/nmxpro/install-nethunter/main/install-nethunter.sh"
+        INSTALL_SCRIPT="install-nethunter.sh"
+
+        log_info "Ensuring dependencies are present..."
+        pkg install curl wget proot -y
+
+        cd "$HOME" || exit
+        log_info "Downloading NetHunter installer..."
+        if curl -fsSL -o "$INSTALL_SCRIPT" "$NETHUNTER_URL"; then
+            log_success "Downloaded $INSTALL_SCRIPT successfully."
+            chmod +x "$INSTALL_SCRIPT"
+            log_info "Launching NetHunter setup..."
+            bash ./"$INSTALL_SCRIPT"
+            
+            # Clean up the installer script after execution finishes
+            log_info "Cleaning up installer script..."
+            rm -f "$INSTALL_SCRIPT"
+            log_success "Removed $INSTALL_SCRIPT"
+        else
+            log_error "Failed to download NetHunter setup script from GitHub."
+            exit 1
+        fi
+        ;;
+
+    10)
+        DIR="$HOME/Optiva-Framework"
+        if [ -d "$DIR" ]; then
+            cd "$DIR" && python optiva.py
+        else
+            log_info "Installing Optiva-Framework"
+            pkg install python git -y
+            cd "$HOME" || exit
+            git clone https://github.com/joker25000/Optiva-Framework
+            cd Optiva-Framework || exit
+            chmod +x installer.sh
+            bash installer.sh
+        fi
+        ;;
+
+    11)
+        DIR="$HOME/ubuntu-in-termux"
+        if [ -d "$DIR" ]; then 
+            echo -e "\e[32mIt Already Exists!\e[m"
+        else
+            log_info "Installing Ubuntu-in-termux"
+            pkg update -y
+            pkg install wget proot git -y
+            cd "$HOME" || exit
+            git clone https://github.com/MFDGaming/ubuntu-in-termux.git
+            cd ubuntu-in-termux || exit
+            chmod +x ubuntu.sh
+            ./ubuntu.sh -y
+            log_success "Successfully installed Ubuntu! Run: ./startubuntu.sh"
+        fi
+        ;;
+
+    12)
+        DIR="$HOME/ghost"
+        if [ -d "$DIR" ]; then 
+            echo -e "\e[32mIt Already Exists!\e[m"
+        else
+            log_info "Installing ghost"
+            pkg install git -y
+            cd "$HOME" || exit
+            git clone https://github.com/entynetproject/ghost.git
+            cd ghost || exit
+            chmod +x install.sh
+        fi
+        ;;
+
+    13)
+        DIR="$HOME/TBomb"
+        if [ -d "$DIR" ]; then
+            cd "$DIR" && bash TBomb.sh
+        else
+            log_info "Installing TBomb" 
+            pkg install python git -y
+            cd "$HOME" || exit
+            git clone https://github.com/TheSpeedX/TBomb
+            cd TBomb || exit
+            chmod +x TBomb.sh
+            bash TBomb.sh
+        fi
+        ;;
+
+    14)
+        DIR="$HOME/grabcam"
+        if [ -d "$DIR" ]; then 
+            cd "$DIR" && bash grabcam.sh
+        else
+            log_info "Installing grabcam"
+            pkg install php wget openssh python git -y
+            cd "$HOME" || exit
+            git clone https://github.com/noob-hackers/grabcam
+            cd grabcam || exit
+            chmod +x grabcam.sh
+            bash grabcam.sh
+        fi
+        ;;
+
+    15)
+        DIR="$HOME/Impulse"
+        if [ -d "$DIR" ]; then 
+            echo -e "\e[32mIt Already Exists!\e[m"
+        else
+            log_info "Installing Impulse"
+            pkg install python git -y
+            cd "$HOME" || exit
+            git clone https://github.com/LimerBoy/Impulse
+            cd Impulse || exit
+            pip install -r requirements.txt
+            echo -e "\e[32mUsage: python impulse.py --method SMS --time 20 --threads 15 --target +123456789\e[m"
+        fi
+        ;;
+
+    16)
+        DIR="$HOME/lockphish"
+        if [ -d "$DIR" ]; then 
+            cd "$DIR" && bash lockphish.sh
+        else
+            log_info "Installing lockphish"
+            pkg install git php openssh -y
+            cd "$HOME" || exit
+            git clone https://github.com/JasonJerry/lockphish 
+            cd lockphish || exit
+            bash lockphish.sh
+        fi
+        ;;
+
+    17)
+        DIR="$HOME/RED_HAWK"
+        if [ -d "$DIR" ]; then 
+            cd "$DIR" && php rhawk.php
+        else
+            log_info "Installing RED_HAWK"
+            pkg install php git -y
+            cd "$HOME" || exit
+            git clone https://github.com/Tuhinshubhra/RED_HAWK
+            cd RED_HAWK || exit
+            php rhawk.php
+        fi
+        ;;
+
+    18)
+        DIR="$HOME/termux-omz"
+        if [ -d "$DIR" ]; then 
+            echo -e "\e[32mIt Already Exists!\e[m"
+        else
+            log_info "Installing termux-omz"
+            pkg install git zsh -y
+            cd "$HOME" || exit
+            git clone https://github.com/adi1090x/termux-omz.git
+            cd termux-omz || exit
+            chmod +x install
+            ./install
+        fi
+        ;;
+
+    19)
+        DIR="$HOME/cupp"
+        if [ -d "$DIR" ]; then 
+            cd "$DIR" && python cupp.py -i
+        else
+            log_info "Installing cupp"
+            pkg install python git -y
+            cd "$HOME" || exit
+            git clone https://github.com/Mebus/cupp.git 
+            cd cupp || exit
+            echo -e "\e[32mRUN: python cupp.py -i\e[m"
+            python cupp.py -i
+        fi
+        ;;
+
+    20)
+        DIR="$HOME/FakeRoot"
+        if [ -d "$DIR" ]; then 
+            cd "$DIR" && python root.py
+        else
+            log_info "Installing FakeRoot"
+            pkg update && pkg install proot proot-distro git python -y
+            cd "$HOME" || exit
+            git clone https://github.com/MaulanaRyM/FakeRoot.git
+            cd FakeRoot || exit
+            python root.py
+        fi
+        ;;
+
+    *)
+        echo -e "\e[33m[\e[31m!\e[33m]\e[91m Invalid option \e[m"
+        ;;
+esac
+
+echo " "
+cd "$HOME" || exit
