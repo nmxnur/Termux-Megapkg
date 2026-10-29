@@ -2,7 +2,7 @@
 # Downloading the required dependencies to run a script without error
 #################################
 #    Project : T-Megapackage    #
-#     author : nmxnur           #
+#       author : Ashish         #
 #################################
 clear
 
@@ -28,10 +28,12 @@ if [ -d "m-pkg" ]; then
 fi
 
 echo
-echo -e "\e[32m[\e[32m+\e[32m]\e[92m Setup completed successfully! You can now run 'm-pkg' from anywhere.\e[m"
+echo -e "\e[32m[\e[32m+\e[32m]\e[92m Setup completed successfully! Launching m-pkg... \e[m"
 echo
 
-# Cleanup temporary repo files if needed
+# Cleanup temporary files
 cd "$HOME" || exit
 rm -rf Termux-Megapackage
 
+# Run the m-pkg command automatically
+m-pkg
