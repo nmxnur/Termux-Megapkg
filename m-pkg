@@ -136,24 +136,19 @@ case "$n" in
         ;;
 
     9|09)
-        NETHUNTER_URL="https://raw.githubusercontent.com/nmxpro/install-nethunter/main/install-nethunter.sh"
-        INSTALL_SCRIPT="install-nethunter.sh"
-
-        log_info "Ensuring dependencies are present..."
-        pkg install curl wget proot -y
-
         cd "$HOME" || exit
         log_info "Downloading NetHunter installer..."
-        if curl -fsSL -o "$INSTALL_SCRIPT" "$NETHUNTER_URL"; then
-            log_success "Downloaded $INSTALL_SCRIPT successfully."
-            chmod +x "$INSTALL_SCRIPT"
+        pkg install curl wget proot -y
+        if curl -fsSL -o "install-nethunter.sh" "https://raw.githubusercontent.com/nmxpro/install-nethunter/main/install-nethunter.sh"; then
+            log_success "Downloaded install-nethunter.sh successfully."
+            chmod +x install-nethunter.sh
             log_info "Launching NetHunter setup..."
-            bash ./"$INSTALL_SCRIPT"
+            bash ./install-nethunter.sh
             
             # Clean up the installer script after execution finishes
             log_info "Cleaning up installer script..."
-            rm -f "$INSTALL_SCRIPT"
-            log_success "Removed $INSTALL_SCRIPT"
+            rm -f install-nethunter.sh
+            log_success "Removed install-nethunter.sh"
         else
             log_error "Failed to download NetHunter setup script from GitHub."
             exit 1
